@@ -1,0 +1,31 @@
+{
+  "name": "ghostwriter",
+  "version": "1.0.0",
+  "description": "a free form technology",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently -k \"npm run dev\" \"npm run watch-css\" ",
+    "dev": "lite-server",
+    "db": "json-server --watch db.json --port 3005",
+    "build-js": "mkdir -p dist/js && uglifyjs src/js/*.js -m -o dist/js/app.js",
+    "lint": "lint jshint src/**/**.js",
+    "build-css": "node-sass --include-path scss scss/main.scss assets/main.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\"",
+    "test": "mocha test",
+    "pretest": "npm run lint",
+    "posttest": "echo the test has been run!",
+    "bash": "Location of the bash/shell script file",
+    "clean": "rimraf ./dist/*"
+  },
+  "author": "Elgin-Skye McLaren",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^3.5.0",
+    "jshint": "^2.9.5",
+    "json-server": "^0.12.0",
+    "lite-server": "^2.3.0",
+    "node-sass": "^4.5.3",
+    "nodemon": "^1.12.1",
+    "uglifyjs": "^2.4.11"
+  }
+}

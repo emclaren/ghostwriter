@@ -1,6 +1,5 @@
 body {
   padding: 0;
-  cursor: none;
   background-color: #003366;
   margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
@@ -91,7 +90,7 @@ canvas {
 
 img {
   object-fit: contain;
-  max-width: 100%;
+  width: 100%;
   z-index: 0; }
 
 #submit-button {

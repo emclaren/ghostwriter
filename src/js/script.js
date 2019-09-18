@@ -12,8 +12,15 @@ var startTime; // the time they start
 var finished = false;
 var form;
 
+
+var today = new Date();
+var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+var dateTime = date+' '+time;
+
+
 let data = [
-  ["mouseX", "mouseY", "time", "is writing", "condition"],
+  ["mouseX", "mouseY", "time", "is writing", "condition", "date"],
 ]; // Headers for the output data
 
 // put the forms into the "forms" folder and then enter in the file names here
@@ -47,16 +54,13 @@ const s = ( sketch ) => {
 
     // During the form Section, create an array out of the coordinate data
     if (started && finished == false){
-      var singleDataPoint =[sketch.mouseX,sketch.mouseY,elapsedTime, currentWriting, formImage[formNumber]];
+      var singleDataPoint =[sketch.mouseX,sketch.mouseY,elapsedTime, currentWriting, formImage[formNumber], dateTime];
       data.push(singleDataPoint);
       console.log("mouseX "+ sketch.mouseX+" ; MouseY" + sketch.mouseY);
     }
   }
 }
 let myp5 = new p5(s);
-
-
-
 
 startButton.onclick = function(){
   welomeScreen.parentNode.removeChild(welomeScreen);

@@ -13,7 +13,7 @@ var finished = false;
 var form;
 
 let data = [
-  ["mouseX", "mouseY", "time", "is writing"],
+  ["mouseX", "mouseY", "time", "is writing", "condition"],
 ]; // Headers for the output data
 
 // put the forms into the "forms" folder and then enter in the file names here
@@ -47,7 +47,7 @@ const s = ( sketch ) => {
 
     // During the form Section, create an array out of the coordinate data
     if (started && finished == false){
-      var singleDataPoint =[sketch.mouseX,sketch.mouseY,elapsedTime, currentWriting];
+      var singleDataPoint =[sketch.mouseX,sketch.mouseY,elapsedTime, currentWriting, formImage[formNumber]];
       data.push(singleDataPoint);
       console.log("mouseX "+ sketch.mouseX+" ; MouseY" + sketch.mouseY);
     }

@@ -66,11 +66,11 @@ startButton.onclick = function(){
   welomeScreen.parentNode.removeChild(welomeScreen);
   var drawPractice = document.createElement("h1");
   drawPractice.setAttribute("id", "connectDotsText");
-  drawPractice.appendChild(document.createTextNode("Connect the dots"));
+  drawPractice.appendChild(document.createTextNode(""));
   sketchHolder.appendChild(drawPractice);
 
   var img = document.createElement('img');
-  img.src = 'img/image.png';
+  // img.src = 'img/image.png'; 
   img.setAttribute("id", "connect-dots-image");
   sketchHolder.appendChild(img);
 
@@ -124,6 +124,17 @@ startButton.onclick = function(){
   }
 
 };
+
+
+
+
+
+
+
+
+
+
+
 
 // Starts a timer when user is on the form page
 function startTimer() {

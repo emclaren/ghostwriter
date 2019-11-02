@@ -97,3 +97,6 @@ img {
 #submit-button {
   width: 200px;
   z-index: 40; }
+
+#parchment {
+  background-color: #ff6464; }

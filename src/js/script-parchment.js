@@ -10,7 +10,7 @@ var today = new Date();
 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 var dateTime = date+' '+time;
-
+var elapsedTime=0;
 var isCounting = false
 
 let data = [
@@ -20,16 +20,10 @@ let data = [
 
 function draw() {}
 function keyPressed() {
-  background('yellow');
-//   text(`${key} ${keyCode}`, 10, 40);
-//   print(key, ' ', keyCode);
-
-  if(keyCode === 82){
-    print(key);  
-
-  }
   if(keyCode === 13){
     submit();
+    myp5.drawingContext.clearRect(0, 0, 50,50);
+    myp5.remove();
     }
   return false; // prevent default
 }
@@ -42,35 +36,39 @@ const s = ( sketch ) => {
     var canvasOverlay = sketch.createCanvas(windowWidth, windowHeight);
     canvasOverlay.parent('sketch-holder');
     sketch.stroke(255,255,255);
+    sketch.background(100, 100, 255)
   }
 
 
   sketch.draw = () => {
+  
     elapsedTime = Date.now() - startTime;
     currentWriting = false;
   isCounting2=isCounting;
     // Draw the line on the screen
     if (sketch.mouseIsPressed) {
       isCounting = true;
-
       sketch.line(sketch.mouseX , sketch.mouseY, sketch.pmouseX , sketch.pmouseY);
       currentWriting = true;
     }
     
+    drawingContext.clearRect(0, 0, 50,50);
+   if(elapsedTime>1){
+    text(elapsedTime, 10,10);
+   }
     if (isCounting2 != isCounting){
-      text("started", 10, 40);
-      console.log("CHANGE")
-      startTimer()
-      
+      startTimer();
+      fill(255);
+      text("started", 10, 10);
     }
-    console.log(currentWriting);
+
+    // console.log(currentWriting);
 
     // During the form Section, create an array out of the coordinate data
     if (started && finished == false){
       var singleDataPoint =[sketch.mouseX,sketch.mouseY,elapsedTime, currentWriting, dateTime];
       data.push(singleDataPoint);
-      console.log("mouseX "+ sketch.mouseX+" ; MouseY" + sketch.mouseY);
-      
+      // console.log("mouseX "+ sketch.mouseX+" ; MouseY" + sketch.mouseY);
     }
   }
 }

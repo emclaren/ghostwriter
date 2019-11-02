@@ -11,6 +11,8 @@ var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 var dateTime = date+' '+time;
 
+var isCounting = false
+
 let data = [
   ["mouseX", "mouseY", "time", "is writing", "date"],
 ]; // Headers for the output data
@@ -24,8 +26,7 @@ function keyPressed() {
 
   if(keyCode === 82){
     print(key);  
-    text("started", 10, 40);
-      startTimer()
+
   }
   if(keyCode === 13){
     submit();
@@ -47,18 +48,29 @@ const s = ( sketch ) => {
   sketch.draw = () => {
     elapsedTime = Date.now() - startTime;
     currentWriting = false;
- 
+  isCounting2=isCounting;
     // Draw the line on the screen
     if (sketch.mouseIsPressed) {
+      isCounting = true;
+
       sketch.line(sketch.mouseX , sketch.mouseY, sketch.pmouseX , sketch.pmouseY);
       currentWriting = true;
     }
+    
+    if (isCounting2 != isCounting){
+      text("started", 10, 40);
+      console.log("CHANGE")
+      startTimer()
+      
+    }
+    console.log(currentWriting);
 
     // During the form Section, create an array out of the coordinate data
     if (started && finished == false){
       var singleDataPoint =[sketch.mouseX,sketch.mouseY,elapsedTime, currentWriting, dateTime];
       data.push(singleDataPoint);
       console.log("mouseX "+ sketch.mouseX+" ; MouseY" + sketch.mouseY);
+      
     }
   }
 }
@@ -72,8 +84,9 @@ function changeWindowSize() {
   myp5.remove();
   myp5 = new p5(s);
 }
-  
-  window.onresize = changeWindowSize;
+
+
+window.onresize = changeWindowSize;
 
 
 

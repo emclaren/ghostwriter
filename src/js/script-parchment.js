@@ -4,7 +4,7 @@ let startTime; // the time they start
 let finished = false;
 let currentWriting; //indicate if the pen is making contact to the page
 let data = [ ["mouseX", "mouseY", "time", "is writing", "date"], ]; // Headers for the output data 
-
+let dateTime 
 
 function draw() {}
 function keyPressed() {
@@ -24,7 +24,7 @@ const s = ( sketch ) => {
     let windowHeight = window.innerHeight;
     let canvasOverlay = sketch.createCanvas(windowWidth, windowHeight); //create canvas the size of current window
     canvasOverlay.parent('sketch-holder'); //binds the canvas to a dom element
-    sketch.fill(255); //set color of counter
+   
     sketch.stroke(255,255,255); //set color of pen stroke
     sketch.background(100, 100, 255); // set background color
   }
@@ -44,6 +44,7 @@ const s = ( sketch ) => {
     // Draws counter on top of the screen;
    if(elapsedTime>1){
     drawingContext.clearRect(0, 0, 50,50);
+    fill(255); //set color of counter
     text(elapsedTime, 10,10);
    }
 
@@ -70,6 +71,10 @@ function startTimer() {
   if(started == false ){
     started = true;
     startTime = Date.now();
+    let today = new Date();
+    let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    dateTime = date+' '+time;
   }
 }
 
@@ -81,7 +86,7 @@ function submit() {
   let encodedUri = encodeURI(csvContent);
   let link = document.createElement("a");
   link.setAttribute("href", encodedUri);
-  link.setAttribute("download", "stubs-data-"+startTime+".csv");
+  link.setAttribute("download", "stubs-data-"+dateTime+".csv");
   document.body.appendChild(link); // Required for FF
   link.click(); // This will download the data file named "my_data.csv".
 }

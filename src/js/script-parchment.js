@@ -73,8 +73,8 @@ function startTimer() {
     startTime = Date.now();
     let today = new Date();
     let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-    let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    dateTime = date+' '+time;
+    let time = today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds();
+    dateTime = date+'-'+time;
   }
 }
 

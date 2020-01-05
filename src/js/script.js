@@ -105,7 +105,8 @@ startButton.onclick = function(){
       var formInstructions = document.getElementById("form-instructions")
       formInstructions.parentNode.removeChild(formInstructions);
       form = document.getElementById('background-image');
-      form.innerHTML= '<img src="forms/' + formImage[formNumber]+'">';
+      // form.innerHTML= '<img src="forms/' + formImage[formNumber]+'">';
+      form.innerHTML= '<img src="forms/new_form.jpg">';
       startTimer();
     }
     else if (screenNumber == 4){
